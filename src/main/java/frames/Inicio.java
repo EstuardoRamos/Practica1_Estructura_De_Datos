@@ -6,6 +6,7 @@
 package frames;
 
 import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
+import com.mycompany.practica1_estructura_de_datos.main.Pasos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -28,6 +29,8 @@ public class Inicio extends javax.swing.JFrame {
     private String contenido;
     private int numLineas;
     private Apuesta apuestas[];
+    private Pasos pasos= new Pasos();
+    int pasosIngreso;
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
@@ -161,7 +164,7 @@ public class Inicio extends javax.swing.JFrame {
         recibirTxt(contenido);
     }
      public void recibirTxt(String texto){
-         String[] lineas = obtenerLineas(numLineas=contarLineas(texto), texto);
+         String[] lineas = leerLineas(numLineas=contarLineas(texto), texto);
          //int pasos = 0;
          apuestas = new Apuesta[lineas.length];
                 for (int i = 0; i < lineas.length; i++) {
@@ -172,8 +175,8 @@ public class Inicio extends javax.swing.JFrame {
                     System.out.println(lineas[i]+" "+apuestas[i].getNombre());
                 }
                 System.out.println("nada "+apuestas[1].getNombre());
-         ApuestasCargadas carga = new ApuestasCargadas(apuestas);
-         System.out.println("El total de pasos para ingresar ap es ");
+                pasos.setPasosIngreso(pasosIngreso);
+         ApuestasCargadas carga = new ApuestasCargadas(apuestas,pasos);
          setVisible(false);
          carga.setVisible(true);
      }
@@ -181,16 +184,16 @@ public class Inicio extends javax.swing.JFrame {
       public void agregarApuestas(Apuesta[] apuestas,int  n,String linea) {
         Apuesta nuevaApuesta = new Apuesta();
         int[] lugares = new int[10];
-        int pasos = 0;
+        int pasos1 = 0;
         try {
             long startTime = System.currentTimeMillis();
             int comas[] = new int[11];
             int x = 0;
             for (int i = 0; i < linea.length() - 1; i++) {
-                pasos++;
+                pasos1++;
                 int j = i + 1;
                 if (",".equals(linea.substring(i, j))) {
-                    pasos++;
+                    pasos1++;
                     comas[x] = i;
                     x++;
                 }
@@ -213,23 +216,24 @@ public class Inicio extends javax.swing.JFrame {
             nuevaApuesta.setDineroApuesta(monto);
             nuevaApuesta.setPuestos(lugares);
             nuevaApuesta.setValido(true);
-            pasos += 10;
+            pasos1 += 10;
             long endTime = System.currentTimeMillis();
-            /*reporte.setTiempoIngreso(((endTime - startTime)/1000));
-            reporte.setPasosIngreso(pasos);*/
-            System.out.println("pasos para ingresar una apuesta "+pasos+" y tiempo "+((endTime - startTime)));
+            double timeIngreso=(((endTime - startTime)/1000));
+            pasosIngreso=pasos1;
+            
+            System.out.println("pasos para ingresar una apuesta "+pasos1+" y tiempo "+((endTime - startTime)));
         } catch (Exception e) {
             //nuevaApuesta.setError("Datos Faltantes");
             nuevaApuesta.setValido(false);
             e.printStackTrace();
-            System.out.println("Error en la entrada ");
+            System.out.println("Error en el documneto entrada ");
         }
         apuestas[n] = nuevaApuesta;
           System.out.println("name2 "+apuestas[n].getNombre());
         
         
     }
-    public String[] obtenerLineas(int numeroLineas, String texto) {
+    public String[] leerLineas(int numeroLineas, String texto) {
         String[] lineas = new String[numeroLineas];
         int lineasContadas = 0;
         int ultima = 0;
@@ -241,7 +245,7 @@ public class Inicio extends javax.swing.JFrame {
 
             }
         }
-        System.out.println("Cantidad de lineas contadas "+lineasContadas);
+        
         lineas[lineasContadas] = texto.substring(ultima, texto.length() - 1);
         return lineas;
     }

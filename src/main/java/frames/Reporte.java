@@ -5,6 +5,8 @@
  */
 package frames;
 
+import com.mycompany.practica1_estructura_de_datos.main.Pasos;
+
 /**
  *
  * @author Estuardo Ramos
@@ -16,9 +18,7 @@ public class Reporte extends javax.swing.JFrame {
      */
     private int pasosIngresoAp;
     private int pasosVerificacion;
-    private int pasosCalculoResultados;
-    private int pasosOrdenaAlfa;
-    private int pasosOrdenaPunteo;
+   Pasos pasos;
     
     public Reporte() {
         initComponents();
@@ -35,14 +35,14 @@ public class Reporte extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        reportesPasos = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        reportesPasos.setColumns(20);
+        reportesPasos.setRows(5);
+        jScrollPane1.setViewportView(reportesPasos);
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -133,11 +133,16 @@ public class Reporte extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void recibirPasos(Pasos pasos){
+        reportesPasos.setText("Cantidad pasos de ingreso: "+pasos.getPasosIngreso()+"Cantidad pasos de verificaion: "+pasos.getPasosVerificacion()+"\n"+"Cantidad de pasos Calculo de resultado: "+pasos.getPasosResultado());
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea reportesPasos;
     // End of variables declaration//GEN-END:variables
 }

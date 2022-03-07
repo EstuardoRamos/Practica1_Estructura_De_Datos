@@ -6,6 +6,7 @@
 package frames;
 
 import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
+import com.mycompany.practica1_estructura_de_datos.main.Pasos;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,9 @@ public class Resultados extends javax.swing.JFrame {
      */
     Apuesta apuestas[];
     int puestosCaballos[];
+    int pasosVerifica;
+    int pasosResultado;
+    Pasos pasos;
     public Resultados() {
         initComponents();
     }
@@ -37,7 +41,7 @@ public class Resultados extends javax.swing.JFrame {
         tablaCaballos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaJugadores = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        reportesBtn = new javax.swing.JButton();
         ordenAlfa = new javax.swing.JButton();
         ordenPuntos = new javax.swing.JButton();
 
@@ -69,7 +73,12 @@ public class Resultados extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaJugadores);
 
-        jButton1.setText("jButton1");
+        reportesBtn.setText("Reportes");
+        reportesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportesBtnActionPerformed(evt);
+            }
+        });
 
         ordenAlfa.setText("Ordenar alfabeticamente");
         ordenAlfa.addActionListener(new java.awt.event.ActionListener() {
@@ -93,12 +102,12 @@ public class Resultados extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(reportesBtn)
                         .addGap(383, 383, 383)
                         .addComponent(ordenAlfa)
                         .addGap(59, 59, 59)
                         .addComponent(ordenPuntos)
-                        .addContainerGap(108, Short.MAX_VALUE))
+                        .addContainerGap(103, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,7 +123,7 @@ public class Resultados extends javax.swing.JFrame {
                     .addComponent(jScrollPane2))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(reportesBtn)
                     .addComponent(ordenAlfa)
                     .addComponent(ordenPuntos))
                 .addContainerGap(181, Short.MAX_VALUE))
@@ -131,44 +140,20 @@ public class Resultados extends javax.swing.JFrame {
         ordenarPorPuntos();
     }//GEN-LAST:event_ordenPuntosActionPerformed
 
+    private void reportesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesBtnActionPerformed
+        Reporte repote = new Reporte();
+        repote.recibirPasos(pasos);
+        repote.setVisible(true);
+    }//GEN-LAST:event_reportesBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Resultados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Resultados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Resultados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Resultados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Resultados().setVisible(true);
-            }
-        });
-    }
-    public void recibirApuestas(Apuesta[] apuesta1, int[] caballos){
+    
+    public void recibirApuestas(Apuesta[] apuesta1, int[] caballos, Pasos pasos){
         apuestas=apuesta1;
         puestosCaballos=caballos;
+        this.pasos=pasos;
         llenarApuestas(apuestas);
         tablaCaballos(caballos);
     }
@@ -197,13 +182,13 @@ public class Resultados extends javax.swing.JFrame {
         DefaultTableModel model1 = new DefaultTableModel();
         //model.addColumn("NOmbre");
         
-        model1.addColumn("Primer puesto");
-        model1.addColumn("Segundo Puesto ");
+        model1.addColumn("Puestos");
+        model1.addColumn("Caballos ");
         
         model1.setRowCount(caballos.length);
         
         for (int j = 0; j < caballos.length; j++) {
-            model1.setValueAt("Puesto "+j, j, 0);
+            model1.setValueAt("Puesto "+j+1, j, 0);
                 model1.setValueAt("Caballo "+caballos[j], j, 1);
                 
         }
@@ -243,11 +228,11 @@ public class Resultados extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton ordenAlfa;
     private javax.swing.JButton ordenPuntos;
+    private javax.swing.JButton reportesBtn;
     private javax.swing.JTable tablaCaballos;
     private javax.swing.JTable tablaJugadores;
     // End of variables declaration//GEN-END:variables

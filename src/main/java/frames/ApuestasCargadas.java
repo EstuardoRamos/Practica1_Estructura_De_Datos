@@ -7,6 +7,7 @@ package frames;
 
 import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
 import com.mycompany.practica1_estructura_de_datos.main.Main;
+import com.mycompany.practica1_estructura_de_datos.main.Pasos;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class ApuestasCargadas extends javax.swing.JFrame {
     Apuesta apuestas[];
     int[] intArray = new int[10];
     int pasosVer;
+    Pasos pasos;
    
 
     /*= new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
@@ -96,43 +98,10 @@ public class ApuestasCargadas extends javax.swing.JFrame {
         verificarApuestas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ApuestasCargadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ApuestasCargadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ApuestasCargadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ApuestasCargadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ApuestasCargadas().setVisible(true);
-            }
-        });
-    }
-
-    public ApuestasCargadas(Apuesta[] apuestas) {
+    public ApuestasCargadas(Apuesta[] apuestas, Pasos pasos) {
         this.apuestas = apuestas;
+        this.pasos=pasos;
         initComponents();
         cargarApuestas();
     }
@@ -147,26 +116,42 @@ public class ApuestasCargadas extends javax.swing.JFrame {
     public void verificarApuestas() {
         Main main = new Main();
         boolean noAgregar;
+        Apuesta[] apuestasRechazadas;
+        String rechazados = null;
        // int pasosVer = 0;
         apuestastxt.setText("");
-        for (int i = 0; i < 10; i++) {
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < apuestas.length; i++) {
             noAgregar = tieneRepetidos(apuestas[i].getPuestos());
             apuestas[i].setValido(!noAgregar);
             pasosVer++;
             if (!noAgregar) {
                 int puestos[] = apuestas[i].getPuestos();
                 apuestastxt.append("Nombre " + apuestas[i].getNombre() + " Dinero apostado: " + apuestas[i].getDineroApuesta() + " Puesto 1 Caballo" + puestos[0] + " Puesto 2 Caballo " + puestos[1] + " Puesto 3 Caballo " + puestos[2] + " Puesto 4 Caballo " + puestos[3] + " Puesto 5 Caballo " + puestos[4] + "\n");
+            }else{
+                
+                rechazados+="Nombre " + apuestas[i].getNombre() + " Dinero apostado: " + apuestas[i].getDineroApuesta()+"\n";
             }
         }
+        long endTime = System.currentTimeMillis();
         System.out.println("pasos verfica "+pasosVer);
+        pasos.setPasosVerificacion(pasosVer);
         JOptionPane.showMessageDialog(null, "Se verificaron las apuestas");
         SelecionarGanadores selec = new SelecionarGanadores();
-        selec.recibir(apuestas);
+        selec.recibir(apuestas,pasos);
         setVisible(false);
         selec.setVisible(true);
         //calcularResultados(apuestas, intArray);
 
     }
+    public void descartarApuestas(String apuestaRecha ){
+        
+    }
+    
+    
+    
+    
+    
 
     public void calcularResultados(Apuesta[] apuestasGanadores, int[] resultado) {
         int puestoApuesta[];

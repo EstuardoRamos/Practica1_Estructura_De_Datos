@@ -10,10 +10,14 @@ package frames;
  * @author Estuardo Ramos
  */
 import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
+import com.mycompany.practica1_estructura_de_datos.main.Pasos;
 
 public class SelecionarGanadores extends javax.swing.JFrame {
 
     Apuesta apuestas[];
+    int pasosVerifica;
+    int pasosResult;
+    Pasos pasos;
 
     /**
      * Creates new form SelecionarGanadores
@@ -247,43 +251,12 @@ public class SelecionarGanadores extends javax.swing.JFrame {
         ingresoResultados();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SelecionarGanadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SelecionarGanadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SelecionarGanadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SelecionarGanadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+   
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SelecionarGanadores().setVisible(true);
-            }
-        });
-    }
-
-    public void recibir(Apuesta[] ap) {
+    public void recibir(Apuesta[] ap, Pasos pasos) {
         apuestas = ap;
+        this.pasos=pasos;
+        
     }
 
     public void ingresoResultados() {
@@ -304,11 +277,12 @@ public class SelecionarGanadores extends javax.swing.JFrame {
     public void calcularResultados(Apuesta[] apuestasGanadores, int[] resultado) {
         int puestoApuesta[];
         for (int j = 0; j < apuestasGanadores.length; j++) {
+            pasosResult++;
             puestoApuesta = apuestasGanadores[j].getPuestos();
             System.out.println("name "+apuestasGanadores[j].getNombre()+apuestasGanadores[j].isValido());
             if (apuestasGanadores[j].isValido()) {
                 for (int i = 0; i < 10; i++) {
-                    //0->1   1 true    2  1
+                    pasosResult++;
                     if (puestoApuesta[i] == resultado[i]) {
                         System.out.println("apuesta de " + apuestasGanadores[j].getNombre() + " " + puestoApuesta[i] + "es igual a " + resultado[i] + " num " + i);
                         apuestasGanadores[j].sumarPuntos(resultado[i]);
@@ -322,8 +296,9 @@ public class SelecionarGanadores extends javax.swing.JFrame {
             System.out.println("puntos de " + apuestasGanadores[j].getNombre() + " " + apuestasGanadores[j].getPuntos());
         }
         //cambiar pestaña
+        pasos.setPasosResultado(pasosResult);
         Resultados resultados = new Resultados();
-        resultados.recibirApuestas(apuestas, resultado);
+        resultados.recibirApuestas(apuestas, resultado, pasos);
         setVisible(false);
         resultados.setVisible(true);
 
