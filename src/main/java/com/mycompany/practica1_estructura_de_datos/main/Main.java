@@ -92,13 +92,15 @@ public class Main {
         
     }
     
-    public static boolean tieneRepetidos(int[] a1){
+    public static boolean tieneRepetidos(int[] a1, int pasosVer){
         //if(participantes[1].getPuesto1())
         boolean pr = false;
         
         for (int i = 0; i < a1.length ; i++) {
+            pasosVer++;
             for (int j = 0; j < a1.length ; j++) {
                 if (i!=j && a1[i]==a1[j]) {
+                    pasosVer++;
                     return true;
                 }
             }

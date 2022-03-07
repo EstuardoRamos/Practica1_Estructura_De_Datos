@@ -28,7 +28,6 @@ public class Inicio extends javax.swing.JFrame {
     private String contenido;
     private int numLineas;
     private Apuesta apuestas[];
-    int pasos = 0;
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
@@ -172,9 +171,9 @@ public class Inicio extends javax.swing.JFrame {
                     
                     System.out.println(lineas[i]+" "+apuestas[i].getNombre());
                 }
-                System.out.println("nn "+apuestas[1].getNombre());
+                System.out.println("nada "+apuestas[1].getNombre());
          ApuestasCargadas carga = new ApuestasCargadas(apuestas);
-         System.out.println("El total de pasos para ingresar ap es "+pasos);
+         System.out.println("El total de pasos para ingresar ap es ");
          setVisible(false);
          carga.setVisible(true);
      }
@@ -182,7 +181,7 @@ public class Inicio extends javax.swing.JFrame {
       public void agregarApuestas(Apuesta[] apuestas,int  n,String linea) {
         Apuesta nuevaApuesta = new Apuesta();
         int[] lugares = new int[10];
-        //int pasos = 0;
+        int pasos = 0;
         try {
             long startTime = System.currentTimeMillis();
             int comas[] = new int[11];
@@ -218,6 +217,7 @@ public class Inicio extends javax.swing.JFrame {
             long endTime = System.currentTimeMillis();
             /*reporte.setTiempoIngreso(((endTime - startTime)/1000));
             reporte.setPasosIngreso(pasos);*/
+            System.out.println("pasos para ingresar una apuesta "+pasos+" y tiempo "+((endTime - startTime)));
         } catch (Exception e) {
             //nuevaApuesta.setError("Datos Faltantes");
             nuevaApuesta.setValido(false);

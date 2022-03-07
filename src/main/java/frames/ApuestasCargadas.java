@@ -20,30 +20,11 @@ public class ApuestasCargadas extends javax.swing.JFrame {
      */
     Apuesta apuestas[];
     int[] intArray = new int[10];
-    int puesto1=1;
-    int puesto2=2;
-    int puesto3=3;
-    int puesto4=4;
-    int puesto5=5;
-    int puesto6=6;
-    int puesto7=7;
-    int puesto8=9;
-    int puesto10=10;
+    int pasosVer;
+   
 
     /*= new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
 
-    {
-        intArray[0] = 10;
-        intArray[1] = 9;
-        intArray[2] = 8;
-        intArray[3] = 7;
-        intArray[4] = 6;
-        intArray[5] = 5;
-        intArray[6] = 4;
-        intArray[7] = 3;
-        intArray[8] = 2;
-        intArray[9] = 1;
-    }
 
     public ApuestasCargadas() {
         initComponents();
@@ -112,7 +93,7 @@ public class ApuestasCargadas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        verificarApuetas();
+        verificarApuestas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -163,19 +144,22 @@ public class ApuestasCargadas extends javax.swing.JFrame {
         }
     }
 
-    public void verificarApuetas() {
+    public void verificarApuestas() {
         Main main = new Main();
         boolean noAgregar;
+       // int pasosVer = 0;
         apuestastxt.setText("");
         for (int i = 0; i < 10; i++) {
-            noAgregar = Main.tieneRepetidos(apuestas[i].getPuestos());
+            noAgregar = tieneRepetidos(apuestas[i].getPuestos());
             apuestas[i].setValido(!noAgregar);
+            pasosVer++;
             if (!noAgregar) {
                 int puestos[] = apuestas[i].getPuestos();
                 apuestastxt.append("Nombre " + apuestas[i].getNombre() + " Dinero apostado: " + apuestas[i].getDineroApuesta() + " Puesto 1 Caballo" + puestos[0] + " Puesto 2 Caballo " + puestos[1] + " Puesto 3 Caballo " + puestos[2] + " Puesto 4 Caballo " + puestos[3] + " Puesto 5 Caballo " + puestos[4] + "\n");
             }
         }
-        JOptionPane.showMessageDialog(null, "Se verificaron las apueatas");
+        System.out.println("pasos verfica "+pasosVer);
+        JOptionPane.showMessageDialog(null, "Se verificaron las apuestas");
         SelecionarGanadores selec = new SelecionarGanadores();
         selec.recibir(apuestas);
         setVisible(false);
@@ -204,6 +188,24 @@ public class ApuestasCargadas extends javax.swing.JFrame {
             System.out.println("puntos de " + apuestasGanadores[j].getNombre() + " " + apuestasGanadores[j].getPuntos());
         }
 
+    }
+    
+    public  boolean tieneRepetidos(int[] a1){
+        //if(participantes[1].getPuesto1())
+        boolean pr = false;
+        
+        for (int i = 0; i < a1.length ; i++) {
+            pasosVer++;
+            for (int j = 0; j < a1.length ; j++) {
+                if (i!=j && a1[i]==a1[j]) {
+                    pasosVer++;
+                    return true;
+                }
+            }
+            
+        }
+        
+     return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

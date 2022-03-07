@@ -37,6 +37,9 @@ public class Resultados extends javax.swing.JFrame {
         tablaCaballos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaJugadores = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        ordenAlfa = new javax.swing.JButton();
+        ordenPuntos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,16 +69,41 @@ public class Resultados extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaJugadores);
 
+        jButton1.setText("jButton1");
+
+        ordenAlfa.setText("Ordenar alfabeticamente");
+        ordenAlfa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenAlfaActionPerformed(evt);
+            }
+        });
+
+        ordenPuntos.setText("Puntos");
+        ordenPuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenPuntosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(383, 383, 383)
+                        .addComponent(ordenAlfa)
+                        .addGap(59, 59, 59)
+                        .addComponent(ordenPuntos)
+                        .addContainerGap(108, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +112,24 @@ public class Resultados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(ordenAlfa)
+                    .addComponent(ordenPuntos))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ordenAlfaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenAlfaActionPerformed
+        ordenarAlfa();
+    }//GEN-LAST:event_ordenAlfaActionPerformed
+
+    private void ordenPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenPuntosActionPerformed
+        ordenarPorPuntos();
+    }//GEN-LAST:event_ordenPuntosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,11 +169,11 @@ public class Resultados extends javax.swing.JFrame {
     public void recibirApuestas(Apuesta[] apuesta1, int[] caballos){
         apuestas=apuesta1;
         puestosCaballos=caballos;
-        llenadaCantidad(apuestas);
+        llenarApuestas(apuestas);
         tablaCaballos(caballos);
     }
     
-    public void llenadaCantidad(Apuesta[] apuestas){
+    public void llenarApuestas(Apuesta[] apuestas){
         DefaultTableModel model1 = new DefaultTableModel();
         //model.addColumn("NOmbre");
         
@@ -143,9 +184,11 @@ public class Resultados extends javax.swing.JFrame {
         
         
         for (int i = 0; i < apuestas.length; i++) {
-            model1.setValueAt(apuestas[i].getNombre(), i, 0);
+            if (apuestas[i].isValido()) {
+                model1.setValueAt(apuestas[i].getNombre(), i, 0);
                 model1.setValueAt(apuestas[i].getPuntos(), i, 1);
                 model1.setValueAt(apuestas[i].getDineroApuesta(), i, 2);
+            }
         }
         tablaJugadores.setModel(model1);
     }
@@ -166,12 +209,45 @@ public class Resultados extends javax.swing.JFrame {
         }
         tablaCaballos.setModel(model1);
     }
+    
+    public void ordenarAlfa(){
+        for (int i = 0; i < apuestas.length; i++) {
+            for (int j = 0; j < apuestas.length; j++) {
+                if (apuestas[i].getNombre().compareTo(apuestas[j].getNombre())<0) {
+                    Apuesta auxi=apuestas[i];
+                    apuestas[i]=apuestas[j];
+                    apuestas[j]=auxi;
+                }
+                
+            }
+        }
+        llenarApuestas(apuestas);
+        
+    }
+    
+    public void ordenarPorPuntos(){
+        for (int i = 0; i < apuestas.length; i++) {
+            for (int j = 0; j < apuestas.length; j++) {
+                if (apuestas[i].getPuntos()>apuestas[j].getPuntos()) {
+                    Apuesta auxi=apuestas[i];
+                    apuestas[i]=apuestas[j];
+                    apuestas[j]=auxi;
+                }
+                
+            }
+        }
+        llenarApuestas(apuestas);
+        
+    }
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton ordenAlfa;
+    private javax.swing.JButton ordenPuntos;
     private javax.swing.JTable tablaCaballos;
     private javax.swing.JTable tablaJugadores;
     // End of variables declaration//GEN-END:variables
