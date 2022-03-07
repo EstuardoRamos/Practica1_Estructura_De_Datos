@@ -7,6 +7,7 @@ package frames;
 
 import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
 import com.mycompany.practica1_estructura_de_datos.main.Main;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,31 @@ public class ApuestasCargadas extends javax.swing.JFrame {
      * Creates new form ApuestasCargadas
      */
     Apuesta apuestas[];
+    int[] intArray = new int[10];
+    int puesto1=1;
+    int puesto2=2;
+    int puesto3=3;
+    int puesto4=4;
+    int puesto5=5;
+    int puesto6=6;
+    int puesto7=7;
+    int puesto8=9;
+    int puesto10=10;
+
+    /*= new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
+
+    {
+        intArray[0] = 10;
+        intArray[1] = 9;
+        intArray[2] = 8;
+        intArray[3] = 7;
+        intArray[4] = 6;
+        intArray[5] = 5;
+        intArray[6] = 4;
+        intArray[7] = 3;
+        intArray[8] = 2;
+        intArray[9] = 1;
+    }
 
     public ApuestasCargadas() {
         initComponents();
@@ -143,25 +169,19 @@ public class ApuestasCargadas extends javax.swing.JFrame {
         apuestastxt.setText("");
         for (int i = 0; i < 10; i++) {
             noAgregar = Main.tieneRepetidos(apuestas[i].getPuestos());
-
+            apuestas[i].setValido(!noAgregar);
             if (!noAgregar) {
                 int puestos[] = apuestas[i].getPuestos();
                 apuestastxt.append("Nombre " + apuestas[i].getNombre() + " Dinero apostado: " + apuestas[i].getDineroApuesta() + " Puesto 1 Caballo" + puestos[0] + " Puesto 2 Caballo " + puestos[1] + " Puesto 3 Caballo " + puestos[2] + " Puesto 4 Caballo " + puestos[3] + " Puesto 5 Caballo " + puestos[4] + "\n");
             }
         }
-        int[] intArray = new int[10]; /*= new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
-        intArray[0]=10;
-        intArray[1]=9;
-        intArray[2]=8;
-        intArray[3]=7;
-        intArray[4]=6;
-        intArray[5]=5;
-        intArray[6]=4;
-        intArray[7]=3;
-        intArray[8]=2;
-        intArray[9]=1;
-        calcularResultados(apuestas, intArray);
-        
+        JOptionPane.showMessageDialog(null, "Se verificaron las apueatas");
+        SelecionarGanadores selec = new SelecionarGanadores();
+        selec.recibir(apuestas);
+        setVisible(false);
+        selec.setVisible(true);
+        //calcularResultados(apuestas, intArray);
+
     }
 
     public void calcularResultados(Apuesta[] apuestasGanadores, int[] resultado) {
@@ -169,50 +189,18 @@ public class ApuestasCargadas extends javax.swing.JFrame {
         for (int j = 0; j < apuestasGanadores.length; j++) {
             puestoApuesta = apuestasGanadores[j].getPuestos();
             for (int i = 0; i < 10; i++) {
-                if (puestoApuesta[i] == 1) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[0]);
-                    apuestasGanadores[j].sumarPuntos(10);
-                }
-                if (puestoApuesta[i] == 2) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[1]);
-                    apuestasGanadores[j].sumarPuntos(9);
-                }
-                if (puestoApuesta[i] == 3) {
-                    apuestasGanadores[j].sumarPuntos(8);
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[2]);
-                }
-                if (puestoApuesta[i] == 4) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[3]);
-                    apuestasGanadores[j].sumarPuntos(7);
-                }
-                if (puestoApuesta[i] == 5) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[4]);
-                    apuestasGanadores[j].sumarPuntos(6);
-                }
-                if (puestoApuesta[i] == 6) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[5]);
-                    apuestasGanadores[j].sumarPuntos(5);
-                   
-                }
-                if (puestoApuesta[i] == 7) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[6]);
-                    apuestasGanadores[j].sumarPuntos(4);
-                }
-                if (puestoApuesta[i] == 8) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[7]);
-                    apuestasGanadores[j].sumarPuntos(3);
-                }
-                if (puestoApuesta[i] == 9) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[8]);
-                    apuestasGanadores[j].sumarPuntos(2);
-                }
-                if (puestoApuesta[i] == 10) {
-                    System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]+"es igual a "+resultado[9]);
-                    apuestasGanadores[j].sumarPuntos(1);
-                }
+              
+               
+               //0->1   1 true    2  1
+               if (puestoApuesta[i] == resultado[i] ) {
+                    System.out.println("apuesta de " + apuestasGanadores[j].getNombre() + " " + puestoApuesta[i] + "es igual a " + resultado[i]+" num "+i);
+                    apuestasGanadores[j].sumarPuntos(resultado[i]);
+                } 
+                
+
                 //System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]);
             }
-
+            //System.out.println("posiciones " + resultado[j]);
             System.out.println("puntos de " + apuestasGanadores[j].getNombre() + " " + apuestasGanadores[j].getPuntos());
         }
 

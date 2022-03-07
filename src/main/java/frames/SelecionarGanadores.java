@@ -9,13 +9,18 @@ package frames;
  *
  * @author Estuardo Ramos
  */
+import com.mycompany.practica1_estructura_de_datos.main.Apuesta;
+
 public class SelecionarGanadores extends javax.swing.JFrame {
+
+    Apuesta apuestas[];
 
     /**
      * Creates new form SelecionarGanadores
      */
     public SelecionarGanadores() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,68 +43,86 @@ public class SelecionarGanadores extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        caballo1Puesto = new javax.swing.JTextField();
+        caballo2Puesto = new javax.swing.JTextField();
+        caballo3Puesto = new javax.swing.JTextField();
+        caballo4Puesto = new javax.swing.JTextField();
+        caballo5Puesto = new javax.swing.JTextField();
+        caballo6Puesto = new javax.swing.JTextField();
+        caballo7Puesto = new javax.swing.JTextField();
+        caballo8Puesto = new javax.swing.JTextField();
+        caballo9Puesto = new javax.swing.JTextField();
+        caballo10Puesto = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Caballo 1");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Caballo 2");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Caballo 3");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Caballo 4");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Caballo 5");
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Caballo 6");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Caballo 7");
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText("Caballo 8");
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setText("Caballo 9");
 
-        jLabel10.setText("jLabel10");
+        jLabel10.setText("Caballo 10");
 
-        jTextField1.setText("jTextField1");
+        caballo3Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caballo3PuestoActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
+        caballo4Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caballo4PuestoActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
+        caballo5Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caballo5PuestoActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setText("jTextField4");
+        caballo9Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caballo9PuestoActionPerformed(evt);
+            }
+        });
 
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
-        jTextField7.setText("jTextField7");
-
-        jTextField8.setText("jTextField8");
-
-        jTextField9.setText("jTextField9");
-
-        jTextField10.setText("jTextField10");
+        caballo10Puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caballo10PuestoActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Ingrese los puestos ");
+
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,88 +138,114 @@ public class SelecionarGanadores extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(78, 78, 78)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(caballo1Puesto)
+                            .addComponent(caballo2Puesto)
+                            .addComponent(caballo3Puesto)
+                            .addComponent(caballo4Puesto)
+                            .addComponent(caballo5Puesto)
+                            .addComponent(caballo6Puesto)
+                            .addComponent(caballo7Puesto)
+                            .addComponent(caballo8Puesto)
+                            .addComponent(caballo9Puesto)
+                            .addComponent(caballo10Puesto)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(74, 74, 74)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel11)
-                .addGap(38, 38, 38)
+                .addGap(63, 63, 63)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo1Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caballo2Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caballo3Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo4Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo5Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo6Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo7Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(caballo8Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(caballo9Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(caballo10Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(42, 42, 42))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void caballo3PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caballo3PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caballo3PuestoActionPerformed
+
+    private void caballo4PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caballo4PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caballo4PuestoActionPerformed
+
+    private void caballo5PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caballo5PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caballo5PuestoActionPerformed
+
+    private void caballo9PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caballo9PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caballo9PuestoActionPerformed
+
+    private void caballo10PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caballo10PuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caballo10PuestoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ingresoResultados();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,7 +282,65 @@ public class SelecionarGanadores extends javax.swing.JFrame {
         });
     }
 
+    public void recibir(Apuesta[] ap) {
+        apuestas = ap;
+    }
+
+    public void ingresoResultados() {
+        int[] result = new int[10];
+        result[0] = Integer.valueOf(caballo1Puesto.getText());
+        result[1] = Integer.valueOf(caballo2Puesto.getText());
+        result[2] = Integer.valueOf(caballo3Puesto.getText());
+        result[3] = Integer.valueOf(caballo4Puesto.getText());
+        result[4] = Integer.valueOf(caballo5Puesto.getText());
+        result[5] = Integer.valueOf(caballo6Puesto.getText());
+        result[6] = Integer.valueOf(caballo7Puesto.getText());
+        result[7] = Integer.valueOf(caballo8Puesto.getText());
+        result[8] = Integer.valueOf(caballo9Puesto.getText());
+        result[9] = Integer.valueOf(caballo10Puesto.getText());
+        calcularResultados(apuestas, result);
+    }
+
+    public void calcularResultados(Apuesta[] apuestasGanadores, int[] resultado) {
+        int puestoApuesta[];
+        for (int j = 0; j < apuestasGanadores.length; j++) {
+            puestoApuesta = apuestasGanadores[j].getPuestos();
+            System.out.println("name "+apuestasGanadores[j].getNombre()+apuestasGanadores[j].isValido());
+            if (apuestasGanadores[j].isValido()) {
+                for (int i = 0; i < 10; i++) {
+                    //0->1   1 true    2  1
+                    if (puestoApuesta[i] == resultado[i]) {
+                        System.out.println("apuesta de " + apuestasGanadores[j].getNombre() + " " + puestoApuesta[i] + "es igual a " + resultado[i] + " num " + i);
+                        apuestasGanadores[j].sumarPuntos(resultado[i]);
+                    }
+                    //System.out.println("apuesta de "+apuestasGanadores[j].getNombre()+" "+puestoApuesta[i]);
+                }
+
+            }
+
+            //System.out.println("posiciones " + resultado[j]);
+            System.out.println("puntos de " + apuestasGanadores[j].getNombre() + " " + apuestasGanadores[j].getPuntos());
+        }
+        //cambiar pestaña
+        Resultados resultados = new Resultados();
+        resultados.recibirApuestas(apuestas, resultado);
+        setVisible(false);
+        resultados.setVisible(true);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField caballo10Puesto;
+    private javax.swing.JTextField caballo1Puesto;
+    private javax.swing.JTextField caballo2Puesto;
+    private javax.swing.JTextField caballo3Puesto;
+    private javax.swing.JTextField caballo4Puesto;
+    private javax.swing.JTextField caballo5Puesto;
+    private javax.swing.JTextField caballo6Puesto;
+    private javax.swing.JTextField caballo7Puesto;
+    private javax.swing.JTextField caballo8Puesto;
+    private javax.swing.JTextField caballo9Puesto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -246,15 +353,5 @@ public class SelecionarGanadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,6 +28,7 @@ public class Inicio extends javax.swing.JFrame {
     private String contenido;
     private int numLineas;
     private Apuesta apuestas[];
+    int pasos = 0;
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
@@ -162,10 +163,10 @@ public class Inicio extends javax.swing.JFrame {
     }
      public void recibirTxt(String texto){
          String[] lineas = obtenerLineas(numLineas=contarLineas(texto), texto);
-         //int numero = 0;
+         //int pasos = 0;
          apuestas = new Apuesta[lineas.length];
                 for (int i = 0; i < lineas.length; i++) {
-                    //agregarApuestas(apuestas, numero, lineas[i]);
+                    
                     agregarApuestas(apuestas, i,  lineas[i]);
                     //numero++;
                     
@@ -173,13 +174,15 @@ public class Inicio extends javax.swing.JFrame {
                 }
                 System.out.println("nn "+apuestas[1].getNombre());
          ApuestasCargadas carga = new ApuestasCargadas(apuestas);
+         System.out.println("El total de pasos para ingresar ap es "+pasos);
+         setVisible(false);
          carga.setVisible(true);
      }
      
       public void agregarApuestas(Apuesta[] apuestas,int  n,String linea) {
         Apuesta nuevaApuesta = new Apuesta();
         int[] lugares = new int[10];
-        double pasos = 0;
+        //int pasos = 0;
         try {
             long startTime = System.currentTimeMillis();
             int comas[] = new int[11];
